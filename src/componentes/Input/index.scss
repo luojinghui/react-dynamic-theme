@@ -1,0 +1,6 @@
+@import '../../var.scss';
+
+.xy-dating.ant-input {
+  @include s('height', 'inputSize');
+  @include s('border', 'primaryColor', 1px solid);
+}

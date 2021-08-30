@@ -1,0 +1,7 @@
+@import '../../var.scss';
+
+.xy-dating.ant-btn-primary {
+  @include s('background-color', 'primaryColor');
+  @include s('box-shadow', 'shadow');
+}
+

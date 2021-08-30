@@ -1,0 +1,59 @@
+$themes: (
+  pc: (
+    bg: #fff,
+    fontColor: #333,
+    primaryColor: blue,
+    inputSize: 32px,
+    shadow: blue red 10px 10px,
+  ),
+  buffet: (
+    bg: #333,
+    fontColor: #fff,
+    primaryColor: rgb(224, 41, 41),
+    inputSize: 36px,
+    shadow: blue red 10px 10px,
+  ),
+);
+
+$value: null !default;
+
+@mixin themeify {
+  @each $theme-name, $theme-map in $themes {
+    $theme-map: $theme-map !global;
+    [data-theme='theme-#{$theme-name}'] & {
+      @content;
+    }
+  }
+}
+
+@mixin color($key) {
+  @include themeify {
+    color: map-get($theme-map, $key);
+  }
+}
+
+@mixin background_color($key) {
+  @include themeify {
+    background-color: map-get($theme-map, $key);
+  }
+}
+
+@mixin s($property, $key, $left: $value, $right: $value) {
+  @if $left && $right {
+    @include themeify {
+      #{$property}: $left map-get($theme-map, $key) $right;
+    }
+  } @else if $left && $left != null {
+    @include themeify {
+      #{$property}: $left map-get($theme-map, $key, $left);
+    }
+  } @else if $right && $right != null {
+    @include themeify {
+      #{$property}: map-get($theme-map, $key) $right;
+    }
+  } @else {
+    @include themeify {
+      #{$property}: $left map-get($theme-map, $key) $right;
+    }
+  }
+}
