@@ -1,16 +1,16 @@
-$themes: (
-  pc: (
+$themeList: (
+  light: (
     bg: #fff,
     fontColor: #333,
     primaryColor: blue,
     inputSize: 32px,
     shadow: blue red 10px 10px,
   ),
-  buffet: (
+  dark: (
     bg: #333,
     fontColor: #fff,
     primaryColor: rgb(224, 41, 41),
-    inputSize: 36px,
+    inputSize: 46px,
     shadow: blue red 10px 10px,
   ),
 );
@@ -18,23 +18,11 @@ $themes: (
 $value: null !default;
 
 @mixin themeify {
-  @each $theme-name, $theme-map in $themes {
+  @each $theme-name, $theme-map in $themeList {
     $theme-map: $theme-map !global;
     [data-theme='theme-#{$theme-name}'] & {
       @content;
     }
-  }
-}
-
-@mixin color($key) {
-  @include themeify {
-    color: map-get($theme-map, $key);
-  }
-}
-
-@mixin background_color($key) {
-  @include themeify {
-    background-color: map-get($theme-map, $key);
   }
 }
 
